@@ -1,0 +1,31 @@
+
+
+body { 
+ background: url('/asset/images/mariquita.jpeg') no-repeat center center fixed; 
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+
+/*Estilos login*/
+.title-login
+{
+    font-size:20px;
+    font-weight: bold;
+}
+.panel-default {
+ opacity: 0.9;
+ margin-top:100px;
+}
+.fields-form
+{
+    height:30px;
+}
+.form-group.last {
+ margin-top:10px;
+ margin-bottom:0px;
+}
+
+/*Fin estilos login*/
+
