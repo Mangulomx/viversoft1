@@ -2,6 +2,10 @@
 @section('title')
 <title>Login</title>
 @stop
+@section('links')
+    @parent
+    {{ HTML::style('asset/css/login.css') }}
+@stop
 @section('content1')
 <div class="span4 offset4">
     <div class="row">
@@ -16,7 +20,7 @@
                 @if (Session::has('error')) 
                 <div class='alert alert-danger'>{{ Session::get('error') }}</div>
                 @endif
-                {{ Form::open(array('url' => 'login')) }}
+                {{ Form::open(array('url' => 'login', 'role' => 'form')) }}
                     <div class="form-group">
                         {{ Form::label('inputusername', 'Username', array('class' => 'col-sm-3 control-label')) }}
                         <div class="col-sm-9">

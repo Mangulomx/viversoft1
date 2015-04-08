@@ -11,7 +11,6 @@
         @section('links')
         {{ HTML::style('asset/css/bootstrap.min.css') }}
         {{ HTML::style('asset/css/font-awesome.min.css') }}
-        {{ HTML::style('asset/css/base.css') }}
         @show
     </head>
     <body>
@@ -45,8 +44,6 @@
             <nav>
                 <ol class="breadcrumb">
                     <li><a href="{{ URL::to('frontpage') }}">Home</a></li>
-                    @foreach ($sections as $section)
-                    @endforeach
                     <li><a href="#">Library</a></li>
                     <li class="active">Data</li>
                 </ol>
@@ -58,8 +55,8 @@
                     <div class="dropdown menu col-lg-9 col-md-9 col-xs-9">
                     <ul class="nav nav-pills nav-stacked">
                         <li><a tabindex="-1" href="">GESTION DE EMPLEADOS</a></li>
-                        @if ($authorized)
-                        <li><a tabindex="-1" href="">GESTION DE USUARIOS</a></li>
+                        @if (Auth::check() && Auth::user()->admin)
+                        <li><a tabindex="-1" href="{{ URL::to('users') }}">GESTION DE USUARIOS</a></li>
                         @endif
                         <li><a class="dropdown-toggle" data-toggle="dropdown">GESTION DE PEDIDOS</a>
                             <ul class="dropdown-menu">
