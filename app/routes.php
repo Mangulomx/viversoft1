@@ -8,7 +8,6 @@ Route::get('/', function()
  */
 
 
-Route::resource('admin/users', 'Admin_UsersController');
 //Nos mostrara el formulario del login
 Route::get('login','AuthController@showLogin');
 //Validamos los datos de inicio de sesión

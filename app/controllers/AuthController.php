@@ -35,7 +35,7 @@ class AuthController extends BaseController {
         if(Auth::attempt($userdata))
         {
             // De ser datos válidos nos mandara a la bienvenida
-            return Redirect::to('hello');
+            return Redirect::to('/');
         }
         // En caso de que la autenticación haya fallado manda un mensaje al formulario de login y también regresamos los valores enviados con withInput().
       

@@ -10,7 +10,7 @@
         @show
         @section('links')
         {{ HTML::style('asset/css/bootstrap.min.css') }}
-        {{ HTML::style('asset/css/font-awesome.min.css') }}
+        {{ HTML::style('asset/font-awesome/css/font-awesome.min.css') }}
         @show
     </head>
     <body>
@@ -81,6 +81,7 @@
             </section>
         @endif 
         </div>
+        <!-- Modal -->
         <div class="modal fade" id="box-modal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -89,9 +90,10 @@
                         <h4 class="modal-title"><!-- Aqui va el titulo de la pagina modal -->@yield('modal_title')</h4>
                     </div>
                     <div class="modal-body">
+                         @yield('modal_body')
                         <div class="alert hidden" id="modal-alert"></div>
                         <!--Aqui va el cuerpo de la página modal -->
-                        @yield('modal_body')
+                       
                    
                     </div>
                     <div class="modal-footer">
@@ -101,8 +103,10 @@
                 </div>
             </div>
         </div>
-        {{ HTML::script('asset/jquery/jquery-1.11.1.min.js') }}
-        {{ HTML::script('asset/js/boostrap.min.js') }}
+        <!-- Fin de Modal -->
+        {{ HTML::script('asset/jquery/jquery-1.11.2.min.js') }}
+        {{ HTML::script('asset/js/bootstrap.min.js') }}
+        {{ HTML::script('asset/js/main.js') }}
         <!--
         <script src="/js/main.js"></script>
         -->

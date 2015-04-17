@@ -28,7 +28,7 @@
       {{ Form::password('password_confirmation', array('class' => 'form-control')) }}
     </div>
   </div>
-  {{ Form::button('Crear usuario', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
+  {{ Form::button('Crear usuario', array('type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'submit')) }}    
   
 {{ Form::close() }}
 

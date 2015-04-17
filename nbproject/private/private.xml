@@ -6,7 +6,9 @@
             <file>file:/C:/wamp/www/viversoft/app/views/admin/base.blade.php</file>
             <file>file:/C:/wamp/www/viversoft/app/views/hello.blade.php</file>
             <file>file:/C:/wamp/www/viversoft/app/routes.php</file>
+            <file>file:/C:/wamp/www/viversoft/app/controllers/UsersController.php</file>
             <file>file:/C:/wamp/www/viversoft/app/views/admin/login.blade.php</file>
+            <file>file:/C:/wamp/www/viversoft/app/views/admin/users/index.blade.php</file>
         </group>
     </open-files>
 </project-private>

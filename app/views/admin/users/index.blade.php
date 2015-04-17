@@ -2,13 +2,13 @@
 @section ('content')
 <div class='panel panel-default'>
     <div class='panel-heading'>
-        <h3 class='panel-title'><i class='fa fa-user'></i>Gestión de usuarios</h3>
+        <h3 class='panel-title'><i class='fa fa-user'></i> Gestión de usuarios</h3>
     </div>
 </div>
 <div class='panel-body'>
     <form role='form' class='form-horizontal' method='post'>
         @if(Auth::check() && Auth::user()->admin) 
-        <a href='' class='btn btn-primary pull-right'><i class='fa fa-plus'></i>Alta usuario</a>
+        <a id="link-modal" class='btn btn-primary pull-right' data-toggle='modal' data-target="#box-modal"><i class='fa fa-plus'></i> Alta usuario</a>
         @endif
         <h2>Listado de usuarios</h2>
         @if($users && !$users->isEmpty())
@@ -45,12 +45,56 @@
         </table>
         @else
         <div class="alert alert-info">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Error</strong> No hay usuarios para mostrar
+            No hay usuarios para mostrar
         </div>
         @endif
     </form>
 </div>
 @stop
+@if(Auth::check() && Auth::user()->admin)
+@section('modal_body')
+    {{ Form::open(array('id' =>'formuser-create', 'url' => 'users/create', 'role' => 'form', 'class' => 'form-horizontal')) }}
+        <fieldset>
+            <legend>Alta nuevo usuario</legend>
+            <div class="form-group">
+                {{ Form::label('inputuser', 'Nombre de usuario', array('class' => 'col-md-4 control-label')) }}
+                <div class="col-md-5">
+                    {{ Form::text('inputuser','', array('placeholder' => 'Introduce la contraseña...', 'class' => 'form-control input-md')) }}   
+                </div>
+            </div>
+            <div class="form-group">
+                {{ Form::label('inputpassword', 'Contraseña', array('class' => 'col-md-4 control-label')) }}
+                <div class="col-md-5">
+                    {{ Form::password('inputpassword','', array('placeholder' => 'Introduce la contraseña...', 'class' => 'form-control input-md')) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ Form::label('inputpassword1', 'Confirmar constraseña', array('class' => 'col-md-4 control-label')) }}
+                <div class="col-md-5">
+                    {{ Form::password('inputpassword1','', array('placeholder' => 'Vuelve a introducir la contraseña...', 'class' => 'form-control input-md')) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ Form::label('inputemail', 'Email', array('class' => 'col-md-4 control-label')) }}
+                <div class="col-md-5">
+                    {{ Form::text('inputemail','', array('placeholder' => 'Introduce el email...', 'class' => 'form-control input-md')) }} 
+                </div>
+            </div>
+            <div class="form-group">
+                {{ Form::label('es_admin', '¿Es administrador?', array('class' => 'col-md-4 control-label')) }}
+                <div class="col-md-5">
+                    {{ Form::checkbox('es_admin',1,false) }}
+                </div>
+            </div>
+        </fieldset>
+    {{ Form::close() }}  
+@stop
+@section('modal_footer')
+<div class='form-group text-center' id='editor-actions'>
+    {{ Form::submit('Alta usuario', ['class' => 'btn btn-success', 'id' => 'submit']) }} 
+    {{ Form::reset('Limpiar', ['class' => 'btn btn-primary']) }}
+</div>
+@stop
+@endif
 
 
