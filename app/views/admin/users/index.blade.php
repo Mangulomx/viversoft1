@@ -6,6 +6,13 @@
     </div>
 </div>
 <div class='panel-body'>
+    <?php $status = Session::get('status'); ?>
+    @if($status == 'ok_create')
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <i class="fa fa-check-square-o"></i> El usuario {{ $user->username }} fue creado con exito 
+    </div>
+    @endif
     <form role='form' class='form-horizontal' method='post'>
         @if(Auth::check() && Auth::user()->admin) 
         <a id="link-modal" class='btn btn-primary pull-right' data-toggle='modal' data-target="#box-modal"><i class='fa fa-plus'></i> Alta usuario</a>
@@ -27,6 +34,7 @@
                 <tr>
                     <td class='text-center'><input type='checkbox' name='rusuario[]' value='{{ $user->id }}' id='{{ $user->id }}' /></td>
                     <td class='text-center'>{{ $user->id }}</td>
+                    <td class='text-center'>{{ $user->username }} </td>
                     <td class='text-center'>{{ $user->email }} </td>
                     <td class='text-center'>@if ($user->admin == 1) SI @else NO @endif</td>
                     @if(Auth::check() && Auth::user()->admin)
@@ -52,10 +60,19 @@
 </div>
 @stop
 @if(Auth::check() && Auth::user()->admin)
+@section('modal_title')
+<h4><i class="fa fa-user-plus"></i> Nuevo usuario<h4>
+@stop
 @section('modal_body')
-    {{ Form::open(array('id' =>'formuser-create', 'url' => 'users/create', 'role' => 'form', 'class' => 'form-horizontal')) }}
-        <fieldset>
-            <legend>Alta nuevo usuario</legend>
+      @if($errors->any())
+        <div class='alert alert-danger'>
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            @foreach($errors->all() as $error)
+                {{ $error }} <br/>
+            @endforeach
+        </div>
+        @endif
+    {{ Form::open(array('id' =>'formuser-create', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="form-group">
                 {{ Form::label('inputuser', 'Nombre de usuario', array('class' => 'col-md-4 control-label')) }}
                 <div class="col-md-5">
@@ -83,18 +100,17 @@
             <div class="form-group">
                 {{ Form::label('es_admin', '¿Es administrador?', array('class' => 'col-md-4 control-label')) }}
                 <div class="col-md-5">
-                    {{ Form::checkbox('es_admin',1,false) }}
+                    {{ Form::checkbox('es_admin','1') }}
                 </div>
             </div>
-        </fieldset>
-    {{ Form::close() }}  
+    
 @stop
 @section('modal_footer')
 <div class='form-group text-center' id='editor-actions'>
-    {{ Form::submit('Alta usuario', ['class' => 'btn btn-success', 'id' => 'submit']) }} 
+    {{ Form::submit('Guardar', ['class' => 'btn btn-success']) }} 
     {{ Form::reset('Limpiar', ['class' => 'btn btn-primary']) }}
+    {{ Form::close() }}  
 </div>
 @stop
 @endif
-
 

@@ -1,23 +1,34 @@
-$(document).ready(function()
+$("document").ready(function()
 {
-    $("#link-modal").click(function(e)
-    {
-        e.preventDefault();
-        $("#box-modal").modal();
-    });
-    
-    $("#box-modal").on("shown", function()
-    {
-        $(this).find('.modal-body').css(
-                {
-                   width:'auto',
-                   height:'auto',
-                   maxheight:'100%'
+   $("#formuser-create").submit(function()
+   {
+      event.preventDefault();
+      var form = $(this);
+      $.ajax({
+         url: 'users/create',
+         dataType:'json',
+         data: form.serialize(),
+         type: "POST", 
+         success: function(response)
+         {
+             if(response.success)
+             {
+                 alert("ok!");
+             }
+             else(response.error)
+             {
+                $.each(response.errors, function( index, value ) {
+                $("input[name='"+index+"']" ).css('border-color: #a94442;');
+                $("input[name='"+index+"']" ).parent().append(value[0]);
                 });
-        $("button#submit").click(function(){
-           alert("hola");
-        });
-    });
+             }
+         },
+         error: function(xhr, textStatus, thrownError)
+         {
+             console.log(xhr.status);
+             console.log(thrownError);
+             console.log(textStatus);
+         }
+      });
+   }); 
 });
-
-
