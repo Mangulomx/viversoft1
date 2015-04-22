@@ -39,7 +39,8 @@ class UsersController extends BaseController
         {
             //Obtenemos los mensajes de error de la validation
             $messages = $validation->messages();
-            //Redireccionamos a nuestro formulario de atras con los errores de la validación 
+            //Redireccionamos a nuestro formulario de atras con los errores de la validación
+            
             if(Request::ajax())
             {
                 return Response::json(array('errors' => $messages));
@@ -48,6 +49,7 @@ class UsersController extends BaseController
             {
                 return Redirect::back()->withInput()->withErrors($validation);
             }
+            
         }
         //Si todo ha ido bien guardamos
         $password = Input::get('inputpassword');
@@ -62,7 +64,7 @@ class UsersController extends BaseController
         
         //redirigimos a usuarios
         
-        return Redirect::to('admin/users.index')->with('status','ok_create');
+        return Redirect::to('showuser')->with('status','ok_create');
         
     }
 }

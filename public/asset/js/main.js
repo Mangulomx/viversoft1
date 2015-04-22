@@ -13,20 +13,19 @@ $("document").ready(function()
          {
              if(response.success)
              {
-                 alert("ok!");
+               
              }
              else(response.error)
              {
                 $.each(response.errors, function( index, value ) {
-                $("input[name='"+index+"']" ).css('border-color: #a94442;');
+                $("input[name='"+index+"']" ).css('border: 2px solid #FF0000;');
                 $("input[name='"+index+"']" ).parent().append(value[0]);
                 });
              }
          },
-         error: function(xhr, textStatus, thrownError)
+         error: function(xhr, textStatus)
          {
              console.log(xhr.status);
-             console.log(thrownError);
              console.log(textStatus);
          }
       });

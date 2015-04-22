@@ -6,12 +6,25 @@
     </div>
 </div>
 <div class='panel-body'>
-    <?php $status = Session::get('status'); ?>
-    @if($status == 'ok_create')
+    <?php 
+    
+    $status = Session::get('status');
+    //if(isset($status))
+    //{
+        //var_dump($status); die();
+    //}
+    
+    ?>
+    @if(!empty($status) && $status == 'ok_create')
+    <script>
+    alert('hi');
+    $("#box-modal").show('hide');
+    </script>
     <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <i class="fa fa-check-square-o"></i> El usuario {{ $user->username }} fue creado con exito 
+        <i class="fa fa-check-square-o"></i> El usuario fue creado con exito 
     </div>
+    
     @endif
     <form role='form' class='form-horizontal' method='post'>
         @if(Auth::check() && Auth::user()->admin) 
