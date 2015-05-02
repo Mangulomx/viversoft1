@@ -27,4 +27,4 @@ Route::group(array('before' => 'auth'), function()
 
 //Rutas del sistema
 Route::Controller('users','UsersController');
-Route::get('showuser','UsersController@getIndex');
+Route::get('showuser/{ok}','UsersController@getIndex');

@@ -11,7 +11,7 @@
   <div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('email', 'Dirección de E-mail') }}
-      {{ Form::text('email', null, array('placeholder' => 'Introduce tu E-mail', 'class' => 'form-control')) }}
+      {{ Form::email('email', null, array('placeholder' => 'Introduce tu E-mail', 'class' => 'form-control')) }}
     </div>
     <div class="form-group col-md-4">
       {{ Form::label('full_name', 'Nombre completo') }}

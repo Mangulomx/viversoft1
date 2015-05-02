@@ -27,10 +27,10 @@ class UsersController extends BaseController
     {
         //validamos reglas inputs
         $rules = array(
-          'inputuser' => 'required|max:10',
-          'inputpassword' => 'required|min:8',
-          'inputpassword1' => 'required|min:8',
-          'inputemail' => 'required|email|unique:users,email'
+          'user' => 'required|min:3|max:10|Alpha',
+          'password' => 'required|Between:4,8|Confirmed',
+          'password_confirmation' => 'required|AlphaNum|Between:4,8',
+          'email' => 'Required|Between:3,64|Email|unique:users,email'
         );
         
         $validation = Validator::make(Input::all(), $rules);
@@ -52,19 +52,19 @@ class UsersController extends BaseController
             
         }
         //Si todo ha ido bien guardamos
-        $password = Input::get('inputpassword');
+        $password = Input::get('password');
         $user = new User;
-        $user->username = Input::get('inputuser');
+        $user->username = Input::get('user');
         $user->password = Hash::make($password);
-        $user->email = Input::get('inputemail'); 
+        $user->email = Input::get('email'); 
         $user->admin = (Input::get('es_admin') == '1') ? 1 : 0;
         
         //guardamos
         $user->save();
         
         //redirigimos a usuarios
-        
-        return Redirect::to('showuser')->with('status','ok_create');
+        Session::flash('status','ok_create');
+        return Response::json(array('success' => 'exito'));
         
     }
 }

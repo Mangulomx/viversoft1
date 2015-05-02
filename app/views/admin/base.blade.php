@@ -105,7 +105,9 @@
         </div>
         <!-- Fin de Modal -->
         {{ HTML::script('asset/jquery/jquery-1.11.2.min.js') }}
+        {{ HTML::script('asset/jquery/jquery.validate.min.js') }}
         {{ HTML::script('asset/js/bootstrap.min.js') }}
+        
         {{ HTML::script('asset/js/main.js') }}
         <!--
         <script src="/js/main.js"></script>

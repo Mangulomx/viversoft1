@@ -7,24 +7,13 @@
 </div>
 <div class='panel-body'>
     <?php 
-    
     $status = Session::get('status');
-    //if(isset($status))
-    //{
-        //var_dump($status); die();
-    //}
-    
     ?>
     @if(!empty($status) && $status == 'ok_create')
-    <script>
-    alert('hi');
-    $("#box-modal").show('hide');
-    </script>
     <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <i class="fa fa-check-square-o"></i> El usuario fue creado con exito 
     </div>
-    
     @endif
     <form role='form' class='form-horizontal' method='post'>
         @if(Auth::check() && Auth::user()->admin) 
@@ -87,27 +76,30 @@
         @endif
     {{ Form::open(array('id' =>'formuser-create', 'role' => 'form', 'class' => 'form-horizontal')) }}
             <div class="form-group">
-                {{ Form::label('inputuser', 'Nombre de usuario', array('class' => 'col-md-4 control-label')) }}
+                {{ Form::label('user', 'Nombre de usuario', array('class' => 'col-md-4 control-label')) }}
                 <div class="col-md-5">
-                    {{ Form::text('inputuser','', array('placeholder' => 'Introduce la contraseña...', 'class' => 'form-control input-md')) }}   
+                    {{ Form::text('user','', array('placeholder' => 'Introduce la contraseña...', 'class' => 'form-control input-md')) }} 
+                    <div id="user_error"></div>
                 </div>
             </div>
             <div class="form-group">
-                {{ Form::label('inputpassword', 'Contraseña', array('class' => 'col-md-4 control-label')) }}
+                {{ Form::label('password', 'Contraseña', array('class' => 'col-md-4 control-label')) }}
                 <div class="col-md-5">
-                    {{ Form::password('inputpassword','', array('placeholder' => 'Introduce la contraseña...', 'class' => 'form-control input-md')) }}
+                    {{ Form::password('password','', array('placeholder' => 'Introduce la contraseña...', 'class' => 'form-control input-md')) }}
+                    <div id="password_error"></div>
                 </div>
             </div>
             <div class="form-group">
-                {{ Form::label('inputpassword1', 'Confirmar constraseña', array('class' => 'col-md-4 control-label')) }}
+                {{ Form::label('password_confirmation', 'Confirmar constraseña', array('class' => 'col-md-4 control-label')) }}
                 <div class="col-md-5">
-                    {{ Form::password('inputpassword1','', array('placeholder' => 'Vuelve a introducir la contraseña...', 'class' => 'form-control input-md')) }}
+                    {{ Form::password('password_confirmation','', array('placeholder' => 'Vuelve a introducir la contraseña...', 'class' => 'form-control input-md')) }}
                 </div>
             </div>
             <div class="form-group">
-                {{ Form::label('inputemail', 'Email', array('class' => 'col-md-4 control-label')) }}
+                {{ Form::label('email', 'Email', array('class' => 'col-md-4 control-label')) }}
                 <div class="col-md-5">
-                    {{ Form::text('inputemail','', array('placeholder' => 'Introduce el email...', 'class' => 'form-control input-md')) }} 
+                    {{ Form::text('email','', array('placeholder' => 'Introduce el email...', 'class' => 'form-control input-md')) }} 
+                    <div id="email_error"></div>
                 </div>
             </div>
             <div class="form-group">
